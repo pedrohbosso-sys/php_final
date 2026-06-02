@@ -2,8 +2,6 @@
 require_once 'includes/conexao.php';
 require_once 'includes/header.php';
 
-session_start();
-
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 $stmt = $pdo->prepare("
@@ -24,12 +22,21 @@ if (!$campeonato) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $stmt = $pdo->prepare("
+    $stmtInscricoes = $pdo->prepare("
+        DELETE FROM inscricoes
+        WHERE campeonato_id = :id
+    ");
+    
+    $stmtInscricoes->execute([
+        ':id' => $id
+    ]);
+
+    $stmtCampeonato = $pdo->prepare("
         DELETE FROM campeonatos
         WHERE id = :id
     ");
 
-    $stmt->execute([
+    $stmtCampeonato->execute([
         ':id' => $id
     ]);
 
@@ -38,44 +45,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
+<main style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: calc(100vh - 310px); padding: 40px 0;">
+    <div class="container" style="margin: 0 auto;">
 
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Excluir Campeonato</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+        <h2>Excluir Campeonato</h2>
 
-<div class="container">
+        <p style="margin-bottom:20px;">
+            Tem certeza que deseja excluir o campeonato:
+            <strong><?= htmlspecialchars($campeonato['nome']) ?></strong>?
+        </p>
 
+        <form method="POST">
+            <button type="submit" style="background: var(--erro);">
+                Confirmar Exclusão
+            </button>
+        </form>
 
-<h2>Excluir Campeonato</h2>
+        <a href="campeonatos.php">
+            Cancelar
+        </a>
 
-<p style="margin-bottom:20px;">
-    Tem certeza que deseja excluir o campeonato:
-    <strong><?= htmlspecialchars($campeonato['nome']) ?></strong>?
-</p>
+    </div>
+</main>
 
-<form method="POST">
-
-    <button
-        type="submit"
-        style="background:#e74c3c;">
-        Confirmar Exclusão
-    </button>
-
-</form>
-
-<a href="campeonatos.php">
-    Cancelar
-</a>
-
-
-</div>
-
-
-
-</body>
-</html>
+<?php 
+require_once 'includes/footer.php'; 
+?>

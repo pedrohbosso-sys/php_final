@@ -2,17 +2,14 @@
 require_once 'includes/conexao.php';
 require_once 'includes/header.php';
 
-session_start();
-
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 $stmt = $pdo->prepare("
-    SELECT p.id,
-           t1.nome AS time1,
-           t2.nome AS time2
+    SELECT p.id, t1.nome AS time1, t2.nome AS time2, c.nome AS campeonato
     FROM partidas p
     JOIN times t1 ON p.time1_id = t1.id
     JOIN times t2 ON p.time2_id = t2.id
+    JOIN campeonatos c ON p.campeonato_id = c.id
     WHERE p.id = :id
 ");
 
@@ -42,48 +39,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
+<main style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: calc(100vh - 310px); padding: 40px 0;">
+    <div class="container" style="margin: 0 auto;">
 
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Excluir Partida</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+        <h2>Excluir Partida</h2>
 
-<div class="container">
+        <p style="margin-bottom:20px;">
+            Tem certeza que deseja excluir a partida do campeonato <strong><?= htmlspecialchars($partida['campeonato']) ?></strong> entre:<br>
+            <strong><?= htmlspecialchars($partida['time1']) ?> x <?= htmlspecialchars($partida['time2']) ?></strong>?
+        </p>
 
+        <form method="POST">
+            <button type="submit" style="background: var(--erro);">
+                Confirmar Exclusão
+            </button>
+        </form>
 
-<h2>Excluir Partida</h2>
+        <a href="partidas.php">
+            Cancelar
+        </a>
 
-<p style="margin-bottom:20px;">
-    Tem certeza que deseja excluir a partida:
-    <strong>
-        <?= htmlspecialchars($partida['time1']) ?>
-        x
-        <?= htmlspecialchars($partida['time2']) ?>
-    </strong>?
-</p>
+    </div>
+</main>
 
-<form method="POST">
-
-    <button
-        type="submit"
-        style="background:#e74c3c;">
-        Confirmar Exclusão
-    </button>
-
-</form>
-
-<a href="partidas.php">
-    Cancelar
-</a>
-
-
-</div>
-
-
-
-</body>
-</html>
+<?php 
+require_once 'includes/footer.php'; 
+?>

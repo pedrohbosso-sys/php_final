@@ -2,8 +2,6 @@
 require_once 'includes/conexao.php';
 require_once 'includes/header.php';
 
-session_start();
-
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 $stmt = $pdo->prepare("
@@ -24,12 +22,19 @@ if (!$time) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $stmt = $pdo->prepare("
+    $stmtPartidas = $pdo->prepare("
+        DELETE FROM partidas
+        WHERE time1_id = :id OR time2_id = :id
+    ");
+    $stmtPartidas->execute([
+        ':id' => $id
+    ]);
+
+    $stmtTime = $pdo->prepare("
         DELETE FROM times
         WHERE id = :id
     ");
-
-    $stmt->execute([
+    $stmtTime->execute([
         ':id' => $id
     ]);
 
@@ -38,40 +43,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
+<main style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: calc(100vh - 310px); padding: 40px 0;">
+    <div class="container" style="margin: 0 auto;">
 
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Excluir Time</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+        <h2>Excluir Time</h2>
 
-<div class="container">
+        <p style="margin-bottom:20px;">
+            Tem certeza que deseja excluir o time:
+            <strong><?= htmlspecialchars($time['nome']) ?></strong>?
+        </p>
 
-    <h2>Excluir Time</h2>
+        <form method="POST">
+            <button type="submit" style="background: var(--erro);">
+                Confirmar Exclusão
+            </button>
+        </form>
 
-    <p style="margin-bottom:20px;">
-        Tem certeza que deseja excluir o time:
-        <strong><?= htmlspecialchars($time['nome']) ?></strong>?
-    </p>
+        <a href="times.php">
+            Cancelar
+        </a>
 
-    <form method="POST">
+    </div>
+</main>
 
-        <button
-            type="submit"
-            style="background:#e74c3c;">
-            Confirmar Exclusão
-        </button>
-
-    </form>
-
-    <a href="times.php">
-        Cancelar
-    </a>
-
-</div>
-
-</body>
-</html>
+<?php 
+require_once 'includes/footer.php'; 
+?>
