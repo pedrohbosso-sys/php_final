@@ -1,0 +1,371 @@
+# ProLeague
+
+### Plataforma de Campeonatos de Jogos
+
+---
+
+# 1. Descrição do Projeto
+
+O projeto **ProLeague** será uma plataforma web de campeonatos de jogos eletrônicos desenvolvida utilizando:
+
+* PHP
+* HTML
+* CSS
+* JavaScript
+* PostgreSQL
+
+O sistema terá como objetivo permitir que usuários criem contas, participem de campeonatos, criem times e acompanhem rankings e partidas.
+
+O projeto possuirá uma interface moderna com tema gamer, utilizando cores escuras, efeitos neon e layout responsivo.
+
+---
+
+# 2. Objetivo do Sistema
+
+O sistema tem como objetivo:
+
+* Permitir cadastro e login de usuários
+* Permitir criação de times
+* Exibir campeonatos disponíveis
+* Gerenciar partidas
+* Mostrar rankings dos times
+* Possuir uma área administrativa simples
+* Demonstrar o uso de banco de dados com PHP
+
+---
+
+# 3. Levantamento de Requisitos
+
+## 3.1 Requisitos Funcionais
+
+Os requisitos funcionais representam tudo aquilo que o sistema deve fazer.
+
+### RF01 – Cadastro de usuários
+
+O sistema deverá permitir que usuários realizem cadastro utilizando:
+
+* nome
+* email
+* senha
+
+---
+
+### RF02 – Login de usuários
+
+O sistema deverá permitir autenticação utilizando email e senha.
+
+---
+
+### RF03 – Logout
+
+O sistema deverá permitir que o usuário encerre sua sessão.
+
+---
+
+### RF04 – Cadastro de times
+
+Usuários poderão criar times contendo:
+
+* nome do time
+* jogo
+* descrição
+
+---
+
+### RF05 – Listagem de campeonatos
+
+O sistema deverá mostrar:
+
+* nome do campeonato
+* jogo
+* data
+* status
+
+---
+
+### RF06 – Cadastro de partidas
+
+O administrador poderá cadastrar:
+
+* time 1
+* time 2
+* placar
+
+---
+
+### RF07 – Exibição de ranking
+
+O sistema deverá mostrar a pontuação dos times em formato de ranking.
+
+---
+
+### RF08 – Área administrativa
+
+O administrador poderá:
+
+* cadastrar campeonatos
+* editar campeonatos
+* remover campeonatos
+* gerenciar partidas
+
+---
+
+# 3.2 Requisitos Não Funcionais
+
+Os requisitos não funcionais representam características técnicas do sistema.
+
+### RNF01 – Interface responsiva
+
+O sistema deverá funcionar em:
+
+* computadores
+* tablets
+* celulares
+
+---
+
+### RNF02 – Segurança básica
+
+As senhas deverão ser armazenadas de forma segura no banco de dados.
+
+---
+
+### RNF03 – Tempo de resposta
+
+As páginas deverão carregar rapidamente.
+
+---
+
+### RNF04 – Tema visual moderno
+
+O sistema deverá possuir:
+
+* tema escuro
+* layout gamer
+* design moderno
+
+---
+
+### RNF05 – Banco de dados PostgreSQL
+
+O sistema utilizará PostgreSQL para armazenamento dos dados.
+
+---
+
+# 4. Funcionalidades do Sistema
+
+## 🏠 Home
+
+A página inicial exibirá:
+
+* campeonatos ativos
+* ranking
+* próximos jogos
+* banner principal
+
+---
+
+## 🔐 Login e Cadastro
+
+O usuário poderá:
+
+* criar conta
+* entrar no sistema
+* sair da conta
+
+---
+
+## 👥 Times
+
+O usuário poderá:
+
+* criar times
+* visualizar informações do time
+* editar informações
+
+---
+
+## 🏆 Campeonatos
+
+O sistema mostrará:
+
+* campeonatos disponíveis
+* jogo relacionado
+* quantidade de times
+* data do evento
+
+---
+
+## ⚔️ Partidas
+
+Será possível cadastrar:
+
+* time A
+* time B
+* placar da partida
+
+---
+
+## 📊 Ranking
+
+O sistema mostrará:
+
+* posição dos times
+* quantidade de pontos
+
+---
+
+# 5. Tecnologias Utilizadas
+
+| Tecnologia           | Utilização              |
+| -------------------- | ----------------------- |
+| PHP                  | Backend                 |
+| HTML                 | Estrutura das páginas   |
+| CSS                  | Estilização             |
+| JavaScript           | Interações visuais      |
+| PostgreSQL           | Banco de dados          |
+| Bootstrap (opcional) | Componentes responsivos |
+
+---
+
+# 6. Estrutura do Banco de Dados
+
+## Tabela: usuarios
+
+```sql
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    senha VARCHAR(255)
+);
+```
+
+---
+
+## Tabela: times
+
+```sql
+CREATE TABLE times (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    jogo VARCHAR(50),
+    descricao TEXT,
+    usuario_id INT
+);
+```
+
+---
+
+## Tabela: campeonatos
+
+```sql
+CREATE TABLE campeonatos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    jogo VARCHAR(50),
+    data_campeonato DATE,
+    status VARCHAR(50)
+);
+```
+
+---
+
+## Tabela: partidas
+
+```sql
+CREATE TABLE partidas (
+    id SERIAL PRIMARY KEY,
+    time1_id INT,
+    time2_id INT,
+    placar1 INT,
+    placar2 INT
+);
+```
+
+---
+
+# 7. Conceitos PHP Utilizados
+
+O projeto utilizará os seguintes conceitos:
+
+* `session_start()`
+* autenticação de usuários
+* login e logout
+* CRUD
+* conexão com banco usando PDO
+* comandos SQL:
+
+  * SELECT
+  * INSERT
+  * UPDATE
+  * DELETE
+* relacionamento entre tabelas
+* sessões PHP
+
+---
+
+# 8. Estrutura Inicial do Projeto
+
+```text
+/proleague
+│
+├── index.php
+├── login.php
+├── cadastro.php
+├── painel.php
+├── campeonatos.php
+├── times.php
+├── partidas.php
+├── logout.php
+│
+├── /css
+├── /img
+├── /js
+└── /includes
+```
+
+---
+
+# 9. Layout do Sistema
+
+O sistema possuirá:
+
+* tema escuro
+* cores neon
+* interface gamer
+* menu superior
+* cards de campeonatos
+* ranking visual
+* responsividade
+
+---
+
+# 10. Funcionalidades Futuras (Opcional)
+
+Funcionalidades mais avançadas que poderão ser implementadas futuramente:
+
+* upload de logo dos times
+* chaveamento automático
+* sistema de convites
+* estatísticas avançadas
+* painel de administrador completo
+
+---
+
+# 11. Considerações Finais
+
+O projeto ProLeague busca desenvolver uma plataforma moderna de campeonatos gamer utilizando PHP e PostgreSQL, demonstrando conhecimentos em:
+
+* desenvolvimento web
+* banco de dados
+* autenticação
+* CRUD
+* organização de sistema
+* design responsivo
+
+O sistema foi planejado para ser funcional, moderno e visualmente atrativo, mantendo uma complexidade adequada para um projeto final acadêmico.
+
+
+
+
