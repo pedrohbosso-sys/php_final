@@ -9,7 +9,7 @@
         <div class="footer-links">
             <h4>Navegação</h4>
             <ul>
-                <li><a href="index.php">Início</a></li>
+                <li><a href="home.php">Início</a></li>
                 <li><a href="campeonatos.php">Campeonatos</a></li>
                 <li><a href="times.php">Times</a></li>
                 <li><a href="partidas.php">Partidas</a></li>

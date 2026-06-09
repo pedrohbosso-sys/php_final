@@ -32,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php endif; ?>
 
         <div class="logo-area">
-            <a href="index.php">
+            <a href="home.php">
                 <img
                     src="/img/logo.png"
                     alt="Logo"
@@ -47,7 +47,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <ul>
 
             <li>
-                <a href="index.php">Início</a>
+                <a href="home.php">Início</a>
             </li>
 
             <?php if (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin'): ?>

@@ -147,8 +147,13 @@ $partidas = $pdo->query("
 
                     <td class="acoes">
                         <?php if ($isAdmin): ?>
-                            <a href="editar_partida.php?id=<?= $p['id'] ?>" class="btn-editar">Editar</a>
-                            <a href="excluir_partida.php?id=<?= $p['id'] ?>" class="btn-excluir">Excluir</a>
+                            <a href="editar_partida.php?id=<?= $p['id'] ?>" class="btn-editar">Editar</a> /
+
+                            <a href="excluir_partida.php?id=<?= $p['id'] ?>" class="btn-excluir"
+                           onclick="return confirm('Tem certeza que deseja excluir esta partida?')">
+                            Excluir
+                        </a>
+                        
                         <?php else: ?>
                             <span>Somente visualização</span>
                         <?php endif; ?>

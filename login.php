@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['tipo'] = $usuario['tipo'];
             
 
-            header("Location: index.php");
+            header("Location: home.php");
             exit;
 
         } else {

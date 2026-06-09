@@ -196,12 +196,12 @@ if (
                             class="btn-editar">
                             Editar
                         </a>
-
+                        /
                         <a
                             href="excluir_campeonato.php?id=<?= $c['id'] ?>"
                             class="btn-excluir"
                             onclick="return confirm('Deseja excluir este campeonato?')">
-                            / Excluir
+                             Excluir
                         </a>
 
                     <?php else: ?>

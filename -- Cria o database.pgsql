@@ -68,3 +68,10 @@ CREATE TABLE inscricoes (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
     FOREIGN KEY (campeonato_id) REFERENCES campeonatos(id)
 );
+
+-- Cria o campo do Tipo do usuario (admin ou usuario)
+ALTER TABLE usuarios ADD COLUMN tipo VARCHAR(20) DEFAULT 'usuario';
+
+SELECT * from usuarios
+
+UPDATE usuarios SET tipo = 'admin' WHERE id = 3; --denomida o id 3 como admin 

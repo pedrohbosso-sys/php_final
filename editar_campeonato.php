@@ -2,7 +2,9 @@
 require_once 'includes/conexao.php';
 require_once 'includes/header.php';
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 

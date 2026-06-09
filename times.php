@@ -7,7 +7,7 @@ require_once 'includes/header.php';
 $erro = "";
 $sucesso = "";
 
-/* 🔒 define admin */
+/*define admin */
 $isAdmin = isset($_SESSION['tipo']) && strtolower(trim($_SESSION['tipo'])) === 'admin';
 
 /* busca times */
@@ -17,7 +17,8 @@ $times = $pdo->query("
     JOIN usuarios u ON t.usuario_id = u.id
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-/* criar time (qualquer usuário logado) */
+
+/* criar time qualquer usuario pode criar time */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!isset($_SESSION['usuario_id'])) {
@@ -80,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p class="sucesso"><?= $sucesso ?></p>
     <?php endif; ?>
 
-    <!-- FORMULÁRIO DE CRIAÇÃO -->
+    <!-- Formulario para criar o time -->
     <form method="POST">
         <input type="text" name="nome" placeholder="Nome do time" required>
         <input type="text" name="jogo" placeholder="Jogo" required>
@@ -119,8 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <a href="editar_time.php?id=<?= $t['id'] ?>" class="btn-editar">
                             Editar
-                        </a>
-
+                        </a> /
                         <a href="excluir_time.php?id=<?= $t['id'] ?>" class="btn-excluir"
                            onclick="return confirm('Tem certeza que deseja excluir este time?')">
                             Excluir
