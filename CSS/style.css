@@ -25,6 +25,8 @@ body {
     display: flex;
     flex-direction: column;
     padding-top: 130px;
+    min-height: 100vh;
+
 }
 
 main {
@@ -384,12 +386,11 @@ textarea:focus {
 
 footer {
     position: relative;
-    margin-top: 100px;
+    margin-top: auto;
     background: var(--bg-secondary);
     color: var(--text);
     overflow: hidden;
     border-top: 1px solid var(--border);
-    min-height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -442,22 +443,22 @@ footer::after {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 30px 20px;
-    gap: 30px;
+    padding: 15px 20px;
+    gap: 20px;
 }
 
 .footer-logo,
 .footer-links,
 .footer-info {
     flex: 1;
-    min-width: 220px;
+    min-width: 180px;
 }
 
 .footer-logo h3,
 .footer-links h4,
 .footer-info h4 {
     color: var(--primary);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     font-size: 16px;
 }
 
@@ -465,7 +466,7 @@ footer::after {
 .footer-info p {
     color: var(--text-muted);
     font-size: 13px;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .footer-links ul {
@@ -474,7 +475,7 @@ footer::after {
 }
 
 .footer-links li {
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .footer-links a {
@@ -493,11 +494,10 @@ footer::after {
     position: relative;
     z-index: 2;
     text-align: center;
-    padding: 15px;
+    padding: 8px;
     border-top: 1px solid rgba(255,255,255,.08);
     color: var(--text-muted);
     font-size: 12px;
-    margin-top: auto;
 }
 
 @keyframes shootingStars {
@@ -507,11 +507,12 @@ footer::after {
             50% -150px,
             80% -120px;
     }
+
     100% {
         background-position:
-            50% 300px,
-            80% 350px,
-            110% 320px;
+            40% 120%,
+            65% 120%,
+            95% 120%;
     }
 }
 

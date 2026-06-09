@@ -201,7 +201,13 @@ if (
                             href="excluir_campeonato.php?id=<?= $c['id'] ?>"
                             class="btn-excluir"
                             onclick="return confirm('Deseja excluir este campeonato?')">
-                             Excluir
+                            Excluir
+                        </a>
+                        /
+                        <a
+                            href="admin_inscritos.php?id=<?= $c['id'] ?>"
+                            class="btn-inscritos">
+                            Ver Inscritos
                         </a>
 
                     <?php else: ?>

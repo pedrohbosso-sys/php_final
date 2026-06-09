@@ -5,20 +5,19 @@ require_once 'includes/conexao.php';
 require_once 'includes/header.php';
 
 $erro = "";
-$sucesso = "";
 
-/*define admin */
+/* define admin */
 $isAdmin = isset($_SESSION['tipo']) && strtolower(trim($_SESSION['tipo'])) === 'admin';
+$usuario_id_logado = $_SESSION['usuario_id'] ?? null;
 
 /* busca times */
 $times = $pdo->query("
-    SELECT t.id, t.nome, t.jogo, t.descricao, u.nome AS dono
+    SELECT t.id, t.nome, t.jogo, t.descricao, t.usuario_id, u.nome AS dono
     FROM times t
     JOIN usuarios u ON t.usuario_id = u.id
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-
-/* criar time qualquer usuario pode criar time */
+/* criar time - qualquer usuario pode criar */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!isset($_SESSION['usuario_id'])) {
@@ -47,14 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ':usuario_id' => $usuario_id
         ]);
 
-        $sucesso = "Time cadastrado com sucesso!";
-
-        /* atualiza lista */
-        $times = $pdo->query("
-            SELECT t.id, t.nome, t.jogo, t.descricao, u.nome AS dono
-            FROM times t
-            JOIN usuarios u ON t.usuario_id = u.id
-        ")->fetchAll(PDO::FETCH_ASSOC);
+        header("Location: times.php?sucesso=1");
+        exit;
     }
 }
 
@@ -77,17 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p class="erro"><?= $erro ?></p>
     <?php endif; ?>
 
-    <?php if ($sucesso): ?>
-        <p class="sucesso"><?= $sucesso ?></p>
+    <?php if (isset($_GET['sucesso'])): ?>
+        <p class="sucesso">Time cadastrado com sucesso!</p>
     <?php endif; ?>
 
     <!-- Formulario para criar o time -->
+    <?php if ($usuario_id_logado): ?>
     <form method="POST">
         <input type="text" name="nome" placeholder="Nome do time" required>
         <input type="text" name="jogo" placeholder="Jogo" required>
         <textarea name="descricao" placeholder="Descrição do time" required></textarea>
         <button type="submit">Criar Time</button>
     </form>
+    <?php endif; ?>
 
     <h3>Times Cadastrados</h3>
 

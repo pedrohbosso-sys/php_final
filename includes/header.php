@@ -82,6 +82,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a href="minhas_inscricoes.php">Minhas Inscrições</a>
                 </li>
 
+
             <?php endif; ?>
 
             <?php if (isset($_SESSION['usuario_id'])): ?>

@@ -2,45 +2,78 @@
 
 session_start();
 require_once 'includes/conexao.php';
+require_once 'includes/header.php';
 
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
     exit;
 }
 
-if (!isset($_GET['id'])) {
-    header("Location: campeonatos.php");
-    exit;
-}
-
 $usuario_id = $_SESSION['usuario_id'];
-$campeonato_id = (int) $_GET['id'];
 
-/* verifica duplicado */
+/* busca inscrições do usuario logado */
 $stmt = $pdo->prepare("
-    SELECT id 
-    FROM inscricoes 
-    WHERE usuario_id = :usuario_id 
-    AND campeonato_id = :campeonato_id
+    SELECT c.id, c.nome, c.jogo, c.data_campeonato, c.status
+    FROM inscricoes i
+    JOIN campeonatos c ON i.campeonato_id = c.id
+    WHERE i.usuario_id = :usuario_id
+    ORDER BY c.data_campeonato DESC
 ");
 
-$stmt->execute([
-    ':usuario_id' => $usuario_id,
-    ':campeonato_id' => $campeonato_id
-]);
+$stmt->execute([':usuario_id' => $usuario_id]);
+$inscricoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if (!$stmt->fetch()) {
+?>
 
-    $insert = $pdo->prepare("
-        INSERT INTO inscricoes (usuario_id, campeonato_id)
-        VALUES (:usuario_id, :campeonato_id)
-    ");
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Inscrições - ProLeague</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-    $insert->execute([
-        ':usuario_id' => $usuario_id,
-        ':campeonato_id' => $campeonato_id
-    ]);
-}
+<div class="container-wide">
 
-header("Location: minhas_inscricoes.php");
-exit;
+    <h2>Minhas Inscrições</h2>
+
+    <?php if (empty($inscricoes)): ?>
+        <p>Você ainda não se inscreveu em nenhum campeonato.</p>
+    <?php else: ?>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Campeonato</th>
+                    <th>Jogo</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($inscricoes as $c): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($c['nome']) ?></td>
+                        <td><?= htmlspecialchars($c['jogo']) ?></td>
+                        <td><?= date('d/m/Y', strtotime($c['data_campeonato'])) ?></td>
+                        <td>
+                            <span class="status <?= $c['status'] ?>">
+                                <?= ucfirst($c['status']) ?>
+                            </span>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+    <?php endif; ?>
+
+    <a href="campeonatos.php">Voltar</a>
+
+</div>
+
+<?php require_once 'includes/footer.php'; ?>
+
+</body>
+</html>
