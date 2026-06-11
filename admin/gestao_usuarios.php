@@ -91,7 +91,6 @@ $usuarios = $pdo->query("SELECT id, nome, email, tipo FROM usuarios ORDER BY id 
                             </button>
                         </form>
                     </td>
-
                     <td class="acoes">
                         <?php if ($u['id'] !== (int) $_SESSION['usuario_id']): ?>
                             <form method="POST" style="display:inline;"
