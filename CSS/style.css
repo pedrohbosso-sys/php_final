@@ -282,7 +282,7 @@ a:hover {
     border-radius: 18px;
     border: 1px solid var(--border);
     box-shadow: 0 0 20px rgba(163, 54, 245, 0.25);
-    margin: 40px auto 0;
+    margin: 40px auto 40px;
 }
 
 .container-wide h2 {
