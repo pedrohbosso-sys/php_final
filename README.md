@@ -260,4 +260,18 @@ Projeto desenvolvido para fins acadêmicos e prática de desenvolvimento web uti
 
 **ProLeague - Plataforma de Campeonatos Gamer**
 
+🔑 Acesso Administrativo
+
+Para facilitar os testes do sistema, foi criado um usuário administrador padrão.
+
+Email:
+
+ney@gmail.com
+
+Senha:
+
+67
+
+Este usuário possui acesso às funcionalidades administrativas do ProLeague, como gerenciamento de usuários, campeonatos e partidas.
+
 Link figma: https://www.figma.com/make/DGSvGy9JlUjtW6k23lvWuj/Prototipar-p%C3%A1ginas-existentes?t=fvSXoypbsCYBfPVW-20&fullscreen=1&preview-route=%2Fcampeonatos
