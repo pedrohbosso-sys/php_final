@@ -64,6 +64,10 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a href="partidas.php">Partidas</a>
                 </li>
 
+                <li>
+                    <a href="gestao_usuarios.php">Usuários</a>
+                </li>
+
             <?php else: ?>
 
                 <li>
@@ -81,7 +85,6 @@ if (session_status() === PHP_SESSION_NONE) {
                 <li>
                     <a href="minhas_inscricoes.php">Minhas Inscrições</a>
                 </li>
-
 
             <?php endif; ?>
 
