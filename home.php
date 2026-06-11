@@ -11,14 +11,9 @@
             Organize Campeonatos de eSports
         </h1>
 
-        <p>
-            Crie times, participe de torneios,
-            acompanhe partidas e suba no ranking.
-        </p>
+        <p>Crie times, participe de torneios, acompanhe partidas e suba no ranking.</p>
 
-        <a href="campeonatos.php">
-            Ver Campeonatos
-        </a>
+        <a href="campeonatos.php">Ver Campeonatos</a>
 
     </section>
 
@@ -26,52 +21,31 @@
 
         <div class="card">
 
-            <h2>
-                Campeonatos
-            </h2>
+            <h2>Campeonatos</h2>
 
-            <p>
-                Veja os torneios disponíveis
-                e participe das competições.
-            </p>
+            <p> Veja os torneios disponíveis e participe das competições.</p>
 
-            <a href="campeonatos.php">
-                Acessar
-            </a>
+            <a href="campeonatos.php">Acessar</a>
 
         </div>
 
         <div class="card">
 
-            <h2>
-                Times
-            </h2>
+            <h2>Times</h2>
 
-            <p>
-                Crie sua equipe e gerencie
-                seus jogadores.
-            </p>
+            <p>Crie sua equipe e gerencie seus jogadores.</p>
 
-            <a href="times.php">
-                Acessar
-            </a>
+            <a href="times.php"> Acessar</a>
 
         </div>
 
         <div class="card">
 
-            <h2>
-                Partidas
-            </h2>
+            <h2>Partidas</h2>
 
-            <p>
-                Acompanhe resultados,
-                confrontos e estatísticas.
-            </p>
+            <p>Acompanhe resultados,confrontos e estatísticas.</p>
 
-            <a href="partidas.php">
-                Acessar
-            </a>
+            <a href="partidas.php"> Acessar</a>
 
         </div>
 
