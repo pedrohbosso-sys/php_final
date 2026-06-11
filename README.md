@@ -12,7 +12,7 @@ O projeto foi desenvolvido com foco em organização, responsividade e um visual
 
 * **PHP**
 * **HTML5**
-* **CSS3**
+* **CSS**
 * **JavaScript**
 * **PostgreSQL**
 
