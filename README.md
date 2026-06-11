@@ -274,4 +274,4 @@ Senha:
 
 Este usuário possui acesso às funcionalidades administrativas do ProLeague, como gerenciamento de usuários, campeonatos e partidas.
 
-Link figma: https://www.figma.com/make/DGSvGy9JlUjtW6k23lvWuj/Prototipar-p%C3%A1ginas-existentes?t=fvSXoypbsCYBfPVW-20&fullscreen=1&preview-route=%2Fcampeonatos
+Link figma: https://www.figma.com/make/DGSvGy9JlUjtW6k23lvWuj/Prototipar-p%C3%A1ginas-existentes?p=f&t=gjhctodqFeBmszRT-0&fullscreen=1&preview-route=%2Fcampeonatos
