@@ -1,12 +1,12 @@
 <?php
-require_once 'includes/conexao.php';
-require_once 'includes/header.php';
+require_once '../includes/conexao.php';
+require_once '../includes/header.php';
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 $stmt = $pdo->prepare("
     SELECT *
-    FROM times
+    FROM campeonatos
     WHERE id = :id
 ");
 
@@ -14,31 +14,33 @@ $stmt->execute([
     ':id' => $id
 ]);
 
-$time = $stmt->fetch(PDO::FETCH_ASSOC);
+$campeonato = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$time) {
-    die("Time não encontrado.");
+if (!$campeonato) {
+    die("Campeonato não encontrado.");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $stmtPartidas = $pdo->prepare("
-        DELETE FROM partidas
-        WHERE time1_id = :id OR time2_id = :id
+    $stmtInscricoes = $pdo->prepare("
+        DELETE FROM inscricoes
+        WHERE campeonato_id = :id
     ");
-    $stmtPartidas->execute([
+    
+    $stmtInscricoes->execute([
         ':id' => $id
     ]);
 
-    $stmtTime = $pdo->prepare("
-        DELETE FROM times
+    $stmtCampeonato = $pdo->prepare("
+        DELETE FROM campeonatos
         WHERE id = :id
     ");
-    $stmtTime->execute([
+
+    $stmtCampeonato->execute([
         ':id' => $id
     ]);
 
-    header("Location: times.php");
+    header("Location: campeonatos.php");
     exit;
 }
 ?>
@@ -46,11 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <main style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: calc(100vh - 310px); padding: 40px 0;">
     <div class="container" style="margin: 0 auto;">
 
-        <h2>Excluir Time</h2>
+        <h2>Excluir Campeonato</h2>
 
         <p style="margin-bottom:20px;">
-            Tem certeza que deseja excluir o time:
-            <strong><?= htmlspecialchars($time['nome']) ?></strong>?
+            Tem certeza que deseja excluir o campeonato:
+            <strong><?= htmlspecialchars($campeonato['nome']) ?></strong>?
         </p>
 
         <form method="POST">
@@ -59,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </button>
         </form>
 
-        <a href="times.php">
+        <a href="campeonatos.php">
             Cancelar
         </a>
 
@@ -67,5 +69,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </main>
 
 <?php 
-require_once 'includes/footer.php'; 
+require_once '../includes/footer.php'; 
 ?>

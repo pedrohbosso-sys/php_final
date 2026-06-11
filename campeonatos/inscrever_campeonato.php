@@ -1,10 +1,10 @@
 <?php
 
 session_start();
-require_once 'includes/conexao.php';
+require_once '../includes/conexao.php';
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -36,5 +36,5 @@ if (!$stmt->fetch()) {
     ]);
 }
 
-header("Location: minhas_inscricoes.php");
+header("Location: ../usuario/minhas_inscricoes.php");
 exit;

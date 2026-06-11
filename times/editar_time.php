@@ -1,13 +1,13 @@
 <?php
-require_once 'includes/conexao.php';
-require_once 'includes/header.php';
+require_once '../includes/conexao.php';
+require_once '../includes/header.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Editar Time</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </div>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../includes/footer.php'; ?>
 
 </body>
 </html>

@@ -1,11 +1,11 @@
 <?php
 
 session_start();
-require_once 'includes/conexao.php';
-require_once 'includes/header.php';
+require_once '../includes/conexao.php';
+require_once '../includes/header.php';
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -30,7 +30,7 @@ $inscricoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Minhas Inscrições - ProLeague</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -69,11 +69,11 @@ $inscricoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <?php endif; ?>
 
-    <a href="campeonatos.php">Voltar</a>
+    <a href="../campeonatos/campeonatos.php">Voltar</a>
 
 </div>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../includes/footer.php'; ?>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
-require_once 'includes/conexao.php';
-require_once 'includes/header.php';
+require_once '../includes/conexao.php';
+require_once '../includes/header.php';
 
 $erro = "";
 $sucesso = "";
@@ -88,7 +88,7 @@ if (
 <head>
     <meta charset="UTF-8">
     <title>Campeonatos - ProLeague</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -243,7 +243,7 @@ if (
 
 </div>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../includes/footer.php'; ?>
 
 </body>
 </html>

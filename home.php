@@ -13,7 +13,7 @@
 
         <p>Crie times, participe de torneios, acompanhe partidas e suba no ranking.</p>
 
-        <a href="campeonatos.php">Ver Campeonatos</a>
+        <a href="/campeonatos/campeonatos.php">Ver Campeonatos</a>
 
     </section>
 
@@ -25,7 +25,7 @@
 
             <p> Veja os torneios disponíveis e participe das competições.</p>
 
-            <a href="campeonatos.php">Acessar</a>
+            <a href="/campeonatos/campeonatos.php">Acessar</a>
 
         </div>
 
@@ -35,7 +35,7 @@
 
             <p>Crie sua equipe e gerencie seus jogadores.</p>
 
-            <a href="times.php"> Acessar</a>
+            <a href="/times/times.php"> Acessar</a>
 
         </div>
 
@@ -45,7 +45,7 @@
 
             <p>Acompanhe resultados,confrontos e estatísticas.</p>
 
-            <a href="partidas.php"> Acessar</a>
+            <a href="/partidas/partidas.php"> Acessar</a>
 
         </div>
 

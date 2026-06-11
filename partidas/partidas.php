@@ -1,11 +1,11 @@
 <?php
 
 session_start();
-require_once 'includes/conexao.php';
-require_once 'includes/header.php';
+require_once '../includes/conexao.php';
+require_once '../includes/header.php';
 
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -167,5 +167,5 @@ $partidas = $pdo->query("
 </main>
 
 <?php 
-require_once 'includes/footer.php'; 
+require_once '../includes/footer.php'; 
 ?>

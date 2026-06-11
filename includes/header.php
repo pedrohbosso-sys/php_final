@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProLeague</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php endif; ?>
 
         <div class="logo-area">
-            <a href="home.php">
+            <a href="/home.php">
                 <img
                     src="/img/logo.png"
                     alt="Logo"
@@ -47,43 +47,43 @@ if (session_status() === PHP_SESSION_NONE) {
         <ul>
 
             <li>
-                <a href="home.php">Início</a>
+                <a href="/home.php">Início</a>
             </li>
 
             <?php if (isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin'): ?>
 
                 <li>
-                    <a href="campeonatos.php">Campeonatos</a>
+                    <a href="/campeonatos/campeonatos.php">Campeonatos</a>
                 </li>
 
                 <li>
-                    <a href="times.php">Times</a>
+                    <a href="/times/times.php">Times</a>
                 </li>
 
                 <li>
-                    <a href="partidas.php">Partidas</a>
+                    <a href="/partidas/partidas.php">Partidas</a>
                 </li>
 
                 <li>
-                    <a href="gestao_usuarios.php">Usuários</a>
+                    <a href="/admin/gestao_usuarios.php">Usuários</a>
                 </li>
 
             <?php else: ?>
 
                 <li>
-                    <a href="times.php">Meu Time</a>
+                    <a href="/times/times.php">Meu Time</a>
                 </li>
 
                 <li>
-                    <a href="campeonatos.php">Campeonatos</a>
+                    <a href="/campeonatos/campeonatos.php">Campeonatos</a>
                 </li>
 
                 <li>
-                    <a href="partidas.php">Partidas</a>
+                    <a href="/partidas/partidas.php">Partidas</a>
                 </li>
 
                 <li>
-                    <a href="minhas_inscricoes.php">Minhas Inscrições</a>
+                    <a href="/usuario/minhas_inscricoes.php">Minhas Inscrições</a>
                 </li>
 
             <?php endif; ?>
@@ -91,17 +91,17 @@ if (session_status() === PHP_SESSION_NONE) {
             <?php if (isset($_SESSION['usuario_id'])): ?>
 
                 <li>
-                    <a href="logout.php">Sair</a>
+                    <a href="/logout.php">Sair</a>
                 </li>
 
             <?php else: ?>
 
                 <li>
-                    <a href="login.php">Login</a>
+                    <a href="/index.php">Login</a>
                 </li>
 
                 <li>
-                    <a href="cadastro.php">Cadastro</a>
+                    <a href="/cadastro.php">Cadastro</a>
                 </li>
 
             <?php endif; ?>

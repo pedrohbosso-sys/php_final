@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require_once 'includes/conexao.php';
-require_once 'includes/header.php';
+require_once '../includes/conexao.php';
+require_once '../includes/header.php';
 
 $erro = "";
 
@@ -18,7 +18,7 @@ $times = $pdo->query("
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!isset($_SESSION['usuario_id'])) {
-        header("Location: login.php");
+        header("Location: ../index.php");
         exit;
     }
 
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Times - ProLeague</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </main>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../includes/footer.php'; ?>
 
 </body>
 </html>

@@ -1,17 +1,17 @@
 <?php
 
-require_once 'includes/conexao.php';
-require_once 'includes/header.php';
+require_once '../includes/conexao.php';
+require_once '../includes/header.php';
 
 // Apenas admin acessa esta página
 if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
-    header("Location: campeonatos.php");
+    header("Location: ../campeonatos/campeonatos.php");
     exit;
 }
 
 // Valida o ID do campeonato
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: campeonatos.php");
+    header("Location: ../campeonatos/campeonatos.php");
     exit;
 }
 
@@ -27,7 +27,7 @@ $stmt->execute([':id' => $campeonato_id]);
 $campeonato = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$campeonato) {
-    header("Location: campeonatos.php");
+    header("Location: ../campeonatos/campeonatos.php");
     exit;
 }
 
@@ -49,7 +49,7 @@ $inscritos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Inscritos - <?= htmlspecialchars($campeonato['nome']) ?> - ProLeague</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -110,11 +110,11 @@ $inscritos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
     <br>
-    <a href="campeonatos.php">← Voltar para Campeonatos</a>
+    <a href="../campeonatos/campeonatos.php">← Voltar para Campeonatos</a>
 
 </div>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../includes/footer.php'; ?>
 
 </body>
 </html>

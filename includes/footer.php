@@ -9,11 +9,11 @@
         <div class="footer-links">
             <h4>Navegação</h4>
             <ul>
-                <li><a href="home.php">Início</a></li>
-                <li><a href="campeonatos.php">Campeonatos</a></li>
-                <li><a href="times.php">Times</a></li>
-                <li><a href="partidas.php">Partidas</a></li>
-                <li><a href="minhas_inscricoes.php">Minhas Inscrições</a></li>
+                <li><a href="/home.php">Início</a></li>
+                <li><a href="/campeonatos/campeonatos.php">Campeonatos</a></li>
+                <li><a href="/times/times.php">Times</a></li>
+                <li><a href="/partidas/partidas.php">Partidas</a></li>
+                <li><a href="/usuario/minhas_inscricoes.php">Minhas Inscrições</a></li>
             </ul>
         </div>
 

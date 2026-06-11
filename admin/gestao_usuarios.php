@@ -1,11 +1,11 @@
 <?php
 
 session_start();
-require_once 'includes/conexao.php';
-require_once 'includes/header.php';
+require_once '../includes/conexao.php';
+require_once '../includes/header.php';
 
 if (!isset($_SESSION['tipo']) || strtolower(trim($_SESSION['tipo'])) !== 'admin') {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit;
 }
 
@@ -39,7 +39,7 @@ $usuarios = $pdo->query("SELECT id, nome, email, tipo FROM usuarios ORDER BY id 
 <head>
     <meta charset="UTF-8">
     <title>Gestão de Usuários - ProLeague</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -114,7 +114,7 @@ $usuarios = $pdo->query("SELECT id, nome, email, tipo FROM usuarios ORDER BY id 
     </div>
 </main>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../includes/footer.php'; ?>
 
 </body>
 </html>

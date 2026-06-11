@@ -1,6 +1,6 @@
 <?php
-require_once 'includes/conexao.php';
-require_once 'includes/header.php';
+require_once '../includes/conexao.php';
+require_once '../includes/header.php';
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
@@ -63,5 +63,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </main>
 
 <?php 
-require_once 'includes/footer.php'; 
+require_once '../includes/footer.php'; 
 ?>
