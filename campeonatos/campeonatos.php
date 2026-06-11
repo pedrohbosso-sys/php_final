@@ -205,7 +205,7 @@ if (
                         </a>
                         /
                         <a
-                            href="admin_inscritos.php?id=<?= $c['id'] ?>"
+                            href="../admin/admin_inscritos.php?id=<?= $c['id'] ?>"
                             class="btn-inscritos">
                             Ver Inscritos
                         </a>
