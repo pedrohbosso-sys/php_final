@@ -419,20 +419,32 @@ http://localhost:8000
 
 ---
 
-# 🔑 Acesso Administrativo
+# 🚀 Configuração de Acesso Administrador
 
-Para facilitar os testes do sistema, foi criado um usuário administrador padrão.
+Este guia rápido orienta como transformar um usuário comum em **ADMIN** no banco de dados do sistema.
 
-### Email
+## 🛠️ Passo a Passo
 
-```text
-ney@gmail.com
+### 1. Criar o Usuário na Interface
+Acesse a tela de cadastro do sistema e crie um novo perfil com as seguintes preferências:
+* **Nome:** `Teste` (ou o de sua preferência)
+* **E-mail:** Utilize um e-mail válido (Ex: `teste@gmail.com`)
+* **Senha:** Uma senha de sua escolha
+
+### 2. Verificar a Criação no Banco de Dados
+Abra o seu terminal SQL ou ferramenta de gerenciamento de banco de dados e execute o comando abaixo para confirmar se o usuário foi cadastrado corretamente:
+
+```sql
+SELECT * FROM usuarios;
 ```
 
-### Senha
+### 3. Tornar o usuário administrador
 
-```text
-67
+Com o ID em mãos, execute o comando abaixo:
+```sql
+UPDATE usuarios
+SET tipo = 'admin'
+WHERE id = ID_DO_USUARIO;
 ```
 
 Este usuário possui acesso às funcionalidades administrativas do ProLeague, como:
