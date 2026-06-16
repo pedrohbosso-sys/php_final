@@ -43,12 +43,14 @@ if (
 
     $nome            = trim($_POST['nome']);
     $jogo            = trim($_POST['jogo']);
+    $categoria       = $_POST['categoria'];
     $data_campeonato = $_POST['data_campeonato'];
     $status          = $_POST['status'];
 
     if (
         empty($nome) ||
         empty($jogo) ||
+        empty($categoria) ||
         empty($data_campeonato) ||
         empty($status)
     ) {
@@ -59,14 +61,15 @@ if (
 
         $stmt = $pdo->prepare("
             INSERT INTO campeonatos
-            (nome, jogo, data_campeonato, status)
+            (nome, jogo, categoria, data_campeonato, status)
             VALUES
-            (:nome, :jogo, :data_campeonato, :status)
+            (:nome, :jogo, :categoria, :data_campeonato, :status)
         ");
 
         $stmt->execute([
             ':nome'            => $nome,
             ':jogo'            => $jogo,
+            ':categoria'       => $categoria,
             ':data_campeonato' => $data_campeonato,
             ':status'          => $status
         ]);
@@ -125,6 +128,16 @@ if (
                 required
             >
 
+            <select name="categoria" required>
+                <option value="">Selecione a categoria</option>
+                <option value="FPS">FPS</option>
+                <option value="Battle Royale">Battle Royale</option>
+                <option value="MOBA">MOBA</option>
+                <option value="RPG">RPG</option>
+                <option value="Esporte">Esporte</option>
+                <option value="Estratégia">Estratégia</option>
+            </select>
+
             <input
                 type="date"
                 name="data_campeonato"
@@ -154,6 +167,7 @@ if (
             <tr>
                 <th>Nome</th>
                 <th>Jogo</th>
+                <th>Categoria</th>
                 <th>Data</th>
                 <th>Status</th>
                 <th>Ações</th>
@@ -172,6 +186,10 @@ if (
 
                 <td>
                     <?= htmlspecialchars($c['jogo']) ?>
+                </td>
+
+                <td>
+                    <?= htmlspecialchars($c['categoria']) ?>
                 </td>
 
                 <td>
@@ -197,6 +215,7 @@ if (
                             Editar
                         </a>
                         /
+
                         <a
                             href="excluir_campeonato.php?id=<?= $c['id'] ?>"
                             class="btn-excluir"
@@ -204,6 +223,7 @@ if (
                             Excluir
                         </a>
                         /
+
                         <a
                             href="../admin/admin_inscritos.php?id=<?= $c['id'] ?>"
                             class="btn-inscritos">

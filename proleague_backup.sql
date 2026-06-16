@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict j1x2bEp7KYu838njDfNu2kE5nSnHtM0avPgv4KGKmppoI3FEWLsJo3ruHZgTwlo
+\restrict yYsf38FOU7SX8zfTas2DOctKO4HTHEg0146HEAky0g0NhfhfQzXBibYORtWEgWs
 
 -- Dumped from database version 18.4
 -- Dumped by pg_dump version 18.4
@@ -67,7 +67,9 @@ CREATE TABLE public.campeonatos (
     nome character varying(100),
     jogo character varying(50),
     data_campeonato date,
-    status character varying(50)
+    status character varying(50),
+    modo_partida character varying(20) DEFAULT 'placar'::character varying,
+    categoria character varying(30)
 );
 
 
@@ -131,6 +133,44 @@ ALTER SEQUENCE public.inscricoes_id_seq OWNED BY public.inscricoes.id;
 
 
 --
+-- Name: partida_resultados; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.partida_resultados (
+    id integer NOT NULL,
+    partida_id integer,
+    time_id integer,
+    colocacao integer,
+    eliminacoes integer,
+    pontos integer
+);
+
+
+ALTER TABLE public.partida_resultados OWNER TO postgres;
+
+--
+-- Name: partida_resultados_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.partida_resultados_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.partida_resultados_id_seq OWNER TO postgres;
+
+--
+-- Name: partida_resultados_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.partida_resultados_id_seq OWNED BY public.partida_resultados.id;
+
+
+--
 -- Name: partidas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -140,7 +180,9 @@ CREATE TABLE public.partidas (
     time1_id integer,
     time2_id integer,
     placar1 integer,
-    placar2 integer
+    placar2 integer,
+    pontos_time1 integer DEFAULT 0,
+    pontos_time2 integer DEFAULT 0
 );
 
 
@@ -299,6 +341,13 @@ ALTER TABLE ONLY public.inscricoes ALTER COLUMN id SET DEFAULT nextval('public.i
 
 
 --
+-- Name: partida_resultados id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.partida_resultados ALTER COLUMN id SET DEFAULT nextval('public.partida_resultados_id_seq'::regclass);
+
+
+--
 -- Name: partidas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -338,10 +387,9 @@ COPY public.campeonato_times (id, campeonato_id, time_id) FROM stdin;
 -- Data for Name: campeonatos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.campeonatos (id, nome, jogo, data_campeonato, status) FROM stdin;
-4	fncs	fortnite	2008-10-10	aberto
-7	rolinhas	valorant	2026-08-10	aberto
-6	cs2 camp	cs	2026-03-21	encerrado
+COPY public.campeonatos (id, nome, jogo, data_campeonato, status, modo_partida, categoria) FROM stdin;
+9	fncs	fortnite	2026-02-10	aberto	placar	Battle Royale
+10	fxt	cs	2026-12-10	aberto	placar	FPS
 \.
 
 
@@ -350,6 +398,15 @@ COPY public.campeonatos (id, nome, jogo, data_campeonato, status) FROM stdin;
 --
 
 COPY public.inscricoes (id, usuario_id, campeonato_id) FROM stdin;
+10	14	9
+\.
+
+
+--
+-- Data for Name: partida_resultados; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.partida_resultados (id, partida_id, time_id, colocacao, eliminacoes, pontos) FROM stdin;
 \.
 
 
@@ -357,7 +414,9 @@ COPY public.inscricoes (id, usuario_id, campeonato_id) FROM stdin;
 -- Data for Name: partidas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.partidas (id, campeonato_id, time1_id, time2_id, placar1, placar2) FROM stdin;
+COPY public.partidas (id, campeonato_id, time1_id, time2_id, placar1, placar2, pontos_time1, pontos_time2) FROM stdin;
+10	9	20	21	100	209	0	0
+11	10	23	24	12	12	0	0
 \.
 
 
@@ -375,6 +434,11 @@ COPY public.time_membros (id, time_id, usuario_id) FROM stdin;
 
 COPY public.times (id, nome, jogo, descricao, usuario_id) FROM stdin;
 5	fxt	fortnite	o milhor	2
+20	daas	fortnite	asdasd	14
+21	asdasdad	fortnite	asdasd	14
+22	asdasd	fortnite	aSasasAS	14
+23	ghjghjg	cs	sadasdfgfhgfh	14
+24	kikikik	cs	fgfhfghfgh	14
 \.
 
 
@@ -399,21 +463,28 @@ SELECT pg_catalog.setval('public.campeonato_times_id_seq', 1, false);
 -- Name: campeonatos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.campeonatos_id_seq', 7, true);
+SELECT pg_catalog.setval('public.campeonatos_id_seq', 10, true);
 
 
 --
 -- Name: inscricoes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.inscricoes_id_seq', 9, true);
+SELECT pg_catalog.setval('public.inscricoes_id_seq', 10, true);
+
+
+--
+-- Name: partida_resultados_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.partida_resultados_id_seq', 1, false);
 
 
 --
 -- Name: partidas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.partidas_id_seq', 8, true);
+SELECT pg_catalog.setval('public.partidas_id_seq', 11, true);
 
 
 --
@@ -427,7 +498,7 @@ SELECT pg_catalog.setval('public.time_membros_id_seq', 1, false);
 -- Name: times_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.times_id_seq', 19, true);
+SELECT pg_catalog.setval('public.times_id_seq', 24, true);
 
 
 --
@@ -459,6 +530,14 @@ ALTER TABLE ONLY public.campeonatos
 
 ALTER TABLE ONLY public.inscricoes
     ADD CONSTRAINT inscricoes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: partida_resultados partida_resultados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.partida_resultados
+    ADD CONSTRAINT partida_resultados_pkey PRIMARY KEY (id);
 
 
 --
@@ -534,6 +613,22 @@ ALTER TABLE ONLY public.inscricoes
 
 
 --
+-- Name: partida_resultados partida_resultados_partida_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.partida_resultados
+    ADD CONSTRAINT partida_resultados_partida_id_fkey FOREIGN KEY (partida_id) REFERENCES public.partidas(id) ON DELETE CASCADE;
+
+
+--
+-- Name: partida_resultados partida_resultados_time_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.partida_resultados
+    ADD CONSTRAINT partida_resultados_time_id_fkey FOREIGN KEY (time_id) REFERENCES public.times(id) ON DELETE CASCADE;
+
+
+--
 -- Name: partidas partidas_campeonato_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -585,5 +680,5 @@ ALTER TABLE ONLY public.times
 -- PostgreSQL database dump complete
 --
 
-\unrestrict j1x2bEp7KYu838njDfNu2kE5nSnHtM0avPgv4KGKmppoI3FEWLsJo3ruHZgTwlo
+\unrestrict yYsf38FOU7SX8zfTas2DOctKO4HTHEg0146HEAky0g0NhfhfQzXBibYORtWEgWs
 
