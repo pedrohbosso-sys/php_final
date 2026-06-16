@@ -122,7 +122,7 @@ proleague/
 │   └── icones/
 │
 ├── database/
-│   └── proleagueBD.pgsql
+│   └── proleague_backup.sql
 │
 ├── docs/
 │   └── Plataforma de campeonatos de jogos.txt
@@ -340,7 +340,7 @@ O projeto já possui um script completo do banco de dados.
 Arquivo:
 
 ```text
-database/proleagueBD.pgsql
+database/proleague_backup.sql
 ```
 
 ### Passo a Passo
@@ -374,7 +374,7 @@ Tools → Query Tool
 Selecione:
 
 ```text
-database/proleagueBD.pgsql
+database/proleague_backup.sql
 ```
 
 #### 6. Execute o script
@@ -453,7 +453,7 @@ Este guia mostra como restaurar e testar o arquivo de backup do banco de dados P
 - Arquivo de backup `proleague_backup.sql` salvo em:
 
 ```text
-H:\php_final\proleague_backup.sql
+database/proleague_backup.sql
 ```
 
 ---
@@ -483,7 +483,7 @@ significa que o banco já existe e você pode continuar normalmente.
 Execute:
 
 ```bash
-psql -U postgres -d proleague_teste -f "H:\php_final\proleague_backup.sql"
+psql -U postgres -d proleague_teste -f "database/proleague_backup.sql"
 ```
 
 Digite novamente a senha do usuário `postgres`.
@@ -550,6 +550,14 @@ Listar todos os times:
 ```sql
 SELECT * FROM times;
 ```
+Verificação do usuario ADMIN
+```sql
+SELECT nome, email, tipo
+FROM usuarios
+WHERE email = 'admin@proleague.com';
+```
+
+
 
 Se os registros aparecerem, o backup foi restaurado corretamente.
 
@@ -593,7 +601,7 @@ createdb -U postgres proleague_teste
 Restaurar backup:
 
 ```bash
-psql -U postgres -d proleague_teste -f "H:\php_final\proleague_backup.sql"
+psql -U postgres -d proleague_teste -f "database/proleague_backup.sql"
 ```
 
 Entrar no banco:
