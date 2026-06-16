@@ -1,4 +1,5 @@
 <?php
+
 require_once '../includes/conexao.php';
 require_once '../includes/header.php';
 
@@ -50,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <h2>Excluir Campeonato</h2>
 
+        <!-- Pergunta confirmação antes de excluir o campeonato -->
         <p style="margin-bottom:20px;">
             Tem certeza que deseja excluir o campeonato:
             <strong><?= htmlspecialchars($campeonato['nome']) ?></strong>?

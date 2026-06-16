@@ -1,5 +1,6 @@
 <?php
 
+// Inicia a sessão se ainda não houver uma
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -43,6 +44,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     </div>
 
+    <!-- Navegação principal do site, com links diferentes para admin e usuário comum -->
     <nav>
         <ul>
 

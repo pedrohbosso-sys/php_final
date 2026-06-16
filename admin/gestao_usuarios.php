@@ -1,19 +1,26 @@
 <?php
 
+// Inicia a sessão para acessar os dados do usuário logado
 session_start();
+
+// Inclui a conexão com o banco e o cabeçalho da página
 require_once '../includes/conexao.php';
 require_once '../includes/header.php';
 
+// Verifica se o usuário logado é admin; caso não seja, redireciona para a página inicial
 if (!isset($_SESSION['tipo']) || strtolower(trim($_SESSION['tipo'])) !== 'admin') {
     header("Location: ../index.php");
     exit;
 }
 
+// Mensagens que serão exibidas na tela
 $sucesso = "";
 $erro = "";
 
+// Verifica se o formulário foi enviado para processar ações
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // Excluir usuário: remove o registro da tabela usuarios
     if (isset($_POST['excluir'])) {
         $id = (int) $_POST['usuario_id'];
         $stmt = $pdo->prepare("DELETE FROM usuarios WHERE id = :id");
@@ -21,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sucesso = "Usuário excluído com sucesso!";
     }
 
+    // Alterar tipo de usuário: admin ou usuário padrão
     if (isset($_POST['alterar_tipo'])) {
         $id   = (int) $_POST['usuario_id'];
         $tipo = $_POST['tipo'] === 'admin' ? 'admin' : 'usuario';
@@ -30,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// Busca todos os usuários para exibir na tabela
 $usuarios = $pdo->query("SELECT id, nome, email, tipo FROM usuarios ORDER BY id ASC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -48,6 +57,7 @@ $usuarios = $pdo->query("SELECT id, nome, email, tipo FROM usuarios ORDER BY id 
 
         <h2>Gestão de Usuários</h2>
 
+        <!-- Exibe mensagens de sucesso ou erro quando uma ação é concluída -->
         <?php if ($sucesso): ?>
             <p class="sucesso"><?= $sucesso ?></p>
         <?php endif; ?>
@@ -56,6 +66,7 @@ $usuarios = $pdo->query("SELECT id, nome, email, tipo FROM usuarios ORDER BY id 
             <p class="erro"><?= $erro ?></p>
         <?php endif; ?>
 
+        <!-- Tabela com a lista de usuários, tipo e ações disponíveis -->
         <table>
             <thead>
                 <tr>

@@ -6,7 +6,7 @@ require_once '../includes/header.php';
 $erro = "";
 $sucesso = "";
 
-// Busca campeonatos
+// Busca todos os campeonatos cadastrados
 $campeonatos = $pdo->query("
     SELECT *
     FROM campeonatos
@@ -34,7 +34,7 @@ if (
     $inscricoesUsuario = $stmt->fetchAll(PDO::FETCH_COLUMN);
 }
 
-// Apenas admin cria campeonato
+// Apenas admin pode criar novo campeonato
 if (
     isset($_SESSION['tipo']) &&
     $_SESSION['tipo'] === 'admin' &&

@@ -6,15 +6,18 @@ require_once '../includes/header.php';
 
 $erro = "";
 
+// Verifica se o usuário logado é admin
 $isAdmin = isset($_SESSION['tipo']) && strtolower(trim($_SESSION['tipo'])) === 'admin';
 $usuario_id_logado = $_SESSION['usuario_id'] ?? null;
 
+// Busca todos os times cadastrados com o nome do dono
 $times = $pdo->query("
     SELECT t.id, t.nome, t.jogo, t.descricao, t.usuario_id, u.nome AS dono
     FROM times t
     JOIN usuarios u ON t.usuario_id = u.id
 ")->fetchAll(PDO::FETCH_ASSOC);
 
+// Processa criação de time quando o formulário for enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!isset($_SESSION['usuario_id'])) {
@@ -64,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <h2>Times</h2>
 
+        <!-- Exibe erro ao criar time ou mensagem de sucesso quando criado -->
         <?php if ($erro): ?>
             <p class="erro"><?= $erro ?></p>
         <?php endif; ?>
@@ -72,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class="sucesso">Time cadastrado com sucesso!</p>
         <?php endif; ?>
 
+        <!-- Formulário para criar time, visível apenas para usuário logado -->
         <?php if ($usuario_id_logado): ?>
         <form method="POST">
             <input type="text" name="nome" placeholder="Nome do time" required>
@@ -83,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <h3>Times Cadastrados</h3>
 
+        <!-- Lista os times existentes e mostra botões de ação apenas para admin -->
         <table>
             <thead>
                 <tr>

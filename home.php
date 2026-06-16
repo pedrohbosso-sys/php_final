@@ -1,10 +1,10 @@
-<?php require_once 'includes/header.php'; 
-  ?>
-
-
+<?php 
+require_once 'includes/header.php'; 
+?>
 
 <main>
 
+    <!-- Seção principal de destaque da página inicial -->
     <section class="hero">
 
         <h1>
@@ -17,6 +17,7 @@
 
     </section>
 
+    <!-- Card com links rápidos para as áreas principais do site -->
     <section class="cards">
 
         <div class="card">

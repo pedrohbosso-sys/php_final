@@ -3,13 +3,12 @@
 require_once '../includes/conexao.php';
 require_once '../includes/header.php';
 
-// Apenas admin acessa esta página
 if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'admin') {
     header("Location: ../campeonatos/campeonatos.php");
     exit;
 }
 
-// Valida o ID do campeonato
+// Verifica se o ID enviado é válido
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header("Location: ../campeonatos/campeonatos.php");
     exit;
@@ -82,6 +81,8 @@ $inscritos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </p>
     </div>
 
+    <!-- Exibe mensagem quando não há inscritos ou a lista de inscritos -->
+    <!-- Exibe mensagem quando não há inscritos e tabela quando há registros -->
     <?php if (empty($inscritos)): ?>
 
         <p>Nenhum usuário inscrito neste campeonato ainda.</p>
@@ -113,7 +114,7 @@ $inscritos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <a href="../campeonatos/campeonatos.php">← Voltar para Campeonatos</a>
 
 </div>
-
+<!-- pega o footer -->
 <?php require_once '../includes/footer.php'; ?>
 
 </body>

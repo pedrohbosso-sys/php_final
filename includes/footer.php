@@ -1,3 +1,4 @@
+<!-- Rodapé comum exibido em todas as páginas -->
 <footer>
     <div class="footer-content">
 

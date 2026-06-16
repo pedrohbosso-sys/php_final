@@ -25,14 +25,12 @@ if (!$usuario) {
     exit;
 }
 
-// Processa upload de foto de perfil
 $erro = "";
 $sucesso = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto_perfil'])) {
     $arquivo = $_FILES['foto_perfil'];
     
-    // Validações
     $permitidas = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     
     if (!in_array($arquivo['type'], $permitidas)) {
@@ -229,6 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['foto_perfil'])) {
 <main>
     <div class="perfil-container">
 
+        <!-- Mostra a foto de perfil do usuário ou ícone padrão se não houver foto -->
         <div class="perfil-header">
             <?php if ($usuario['foto_perfil']): ?>
                 <img 

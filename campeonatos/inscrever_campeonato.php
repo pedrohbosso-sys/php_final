@@ -11,7 +11,7 @@ if (!isset($_SESSION['usuario_id'])) {
 $usuario_id = $_SESSION['usuario_id'];
 $campeonato_id = $_GET['id'];
 
-// evita duplicado
+// Verifica se o usuário já está inscrito neste campeonato
 $stmt = $pdo->prepare("
     SELECT id FROM inscricoes
     WHERE usuario_id = :usuario_id
@@ -25,7 +25,8 @@ $stmt->execute([
 
 if (!$stmt->fetch()) {
 
-    $insert = $pdo->prepare("
+    // Registra a inscrição somente se ainda não existir
+    $insert = $pdo->prepare("\
         INSERT INTO inscricoes (usuario_id, campeonato_id)
         VALUES (:usuario_id, :campeonato_id)
     ");
@@ -36,5 +37,6 @@ if (!$stmt->fetch()) {
     ]);
 }
 
+// Após inscrição, redireciona para a página de minhas inscrições
 header("Location: ../usuario/minhas_inscricoes.php");
 exit;

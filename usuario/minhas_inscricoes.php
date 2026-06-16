@@ -11,7 +11,7 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $usuario_id = $_SESSION['usuario_id'];
 
-/* busca inscrições do usuario logado */
+// Busca as inscrições do usuário logado
 $stmt = $pdo->prepare("
     SELECT c.id, c.nome, c.jogo, c.data_campeonato, c.status
     FROM inscricoes i

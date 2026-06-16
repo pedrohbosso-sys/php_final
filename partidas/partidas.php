@@ -25,7 +25,6 @@ $campeonatos = $pdo->query("
     FROM campeonatos
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-/* CADASTRAR PARTIDA (SÓ ADMIN) */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$isAdmin) {
@@ -156,8 +155,7 @@ $partidas = $pdo->query("
 
     <h3>Partidas Cadastradas</h3>
 
-        <table>
-
+        <!-- Tabela com as partidas registradas -->
         <thead>
             <tr>
                 <th>Campeonato</th>

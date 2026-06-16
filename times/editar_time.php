@@ -25,7 +25,7 @@ if (!$time) {
     die("Time não encontrado.");
 }
 
-/* verifica permissao */
+// Verifica permissão: apenas admin ou dono do time pode editar
 $isAdmin = isset($_SESSION['tipo']) && strtolower(trim($_SESSION['tipo'])) === 'admin';
 $isDono  = (int)$_SESSION['usuario_id'] === (int)$time['usuario_id'];
 

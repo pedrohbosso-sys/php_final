@@ -1,9 +1,13 @@
 <?php
+
+// Inclui a conexão com o banco de dados
 require_once 'includes/conexao.php';
 
+// Mensagens para exibir ao usuário
 $erro = "";
 $sucesso = "";
 
+// Processa o envio do formulário de cadastro
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome  = trim($_POST['nome']);
     $email = trim($_POST['email']);
