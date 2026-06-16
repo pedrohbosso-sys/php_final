@@ -457,6 +457,184 @@ Este usuário possui acesso às funcionalidades administrativas do ProLeague, co
 
 ---
 
+# 📦 Testando o Dump do PostgreSQL
+
+Este guia mostra como restaurar e testar o arquivo de backup do banco de dados PostgreSQL.
+
+## Pré-requisitos
+
+- PostgreSQL instalado;
+- Usuário `postgres` configurado;
+- Arquivo de backup `proleague_backup.sql` salvo em:
+
+```text
+H:\php_final\proleague_backup.sql
+```
+
+---
+
+## 1. Criar um banco de dados de teste
+
+Abra o Prompt de Comando e execute:
+
+```bash
+createdb -U postgres proleague_teste
+```
+
+Digite a senha do usuário `postgres`.
+
+Caso apareça:
+
+```text
+database "proleague_teste" already exists
+```
+
+significa que o banco já existe e você pode continuar normalmente.
+
+---
+
+## 2. Restaurar o arquivo de backup
+
+Execute:
+
+```bash
+psql -U postgres -d proleague_teste -f "H:\php_final\proleague_backup.sql"
+```
+
+Digite novamente a senha do usuário `postgres`.
+
+Se a restauração for concluída com sucesso, aparecerão mensagens semelhantes a:
+
+```text
+CREATE TABLE
+COPY
+ALTER TABLE
+ALTER SEQUENCE
+```
+
+---
+
+## 3. Entrar no banco restaurado
+
+Execute:
+
+```bash
+psql -U postgres -d proleague_teste
+```
+
+Digite a senha do usuário `postgres`.
+
+---
+
+## 4. Verificar se as tabelas foram importadas
+
+Dentro do PostgreSQL, execute:
+
+```sql
+\dt
+```
+
+Deverão aparecer tabelas como:
+
+- campeonato_times
+- campeonatos
+- inscricoes
+- partidas
+- time_membros
+- times
+- usuarios
+
+---
+
+## 5. Verificar os dados importados
+
+Listar todos os usuários:
+
+```sql
+SELECT * FROM usuarios;
+```
+
+Listar todos os campeonatos:
+
+```sql
+SELECT * FROM campeonatos;
+```
+
+Listar todos os times:
+
+```sql
+SELECT * FROM times;
+```
+
+Se os registros aparecerem, o backup foi restaurado corretamente.
+
+---
+
+## 6. Testar inserção de novos dados
+
+Execute:
+
+```sql
+INSERT INTO usuarios(nome, email, senha)
+VALUES ('teste', 'teste@email.com', '123');
+```
+
+Depois confira:
+
+```sql
+SELECT * FROM usuarios;
+```
+
+Se o novo usuário aparecer na consulta, significa que as tabelas e as sequências foram restauradas corretamente.
+
+---
+
+## 7. Sair do PostgreSQL
+
+```sql
+\q
+```
+
+---
+
+## Resumo dos comandos utilizados
+
+Criar banco:
+
+```bash
+createdb -U postgres proleague_teste
+```
+
+Restaurar backup:
+
+```bash
+psql -U postgres -d proleague_teste -f "H:\php_final\proleague_backup.sql"
+```
+
+Entrar no banco:
+
+```bash
+psql -U postgres -d proleague_teste
+```
+
+Listar tabelas:
+
+```sql
+\dt
+```
+
+Consultar usuários:
+
+```sql
+SELECT * FROM usuarios;
+```
+
+Sair do PostgreSQL:
+
+```sql
+\q
+```
+
 # 🎨 Protótipo no Figma
 
 Link do protótipo:
