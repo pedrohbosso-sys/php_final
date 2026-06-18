@@ -130,6 +130,107 @@ proleague/
 └── README.md
 ```
 
+## Descrição dos Arquivos e Diretórios
+
+### Arquivos Principais
+
+| Arquivo        | Descrição                                                                   |
+| -------------- | --------------------------------------------------------------------------- |
+| `index.php`    | Página inicial do sistema, responsável por apresentar o projeto ao usuário. |
+| `home.php`     | Tela principal exibida após o login.                                   |
+| `login.php`    | Tela de autenticação dos usuários.                                          |
+| `cadastro.php` | Página para criação de novas contas.                                        |
+| `logout.php`   | Encerra a sessão do usuário e realiza o logout.                             |
+
+### Módulo de Campeonatos
+
+| Arquivo                    | Descrição                                        |
+| -------------------------- | ------------------------------------------------ |
+| `campeonatos.php`          | Lista todos os campeonatos cadastrados.          |
+| `inscrever_campeonato.php` | Permite a inscrição de times em campeonatos.     |
+| `editar_campeonato.php`    | Atualiza informações de um campeonato existente. |
+| `excluir_campeonato.php`   | Remove campeonatos do sistema.                   |
+
+### Módulo de Partidas
+
+| Arquivo               | Descrição                                 |
+| --------------------- | ----------------------------------------- |
+| `partidas.php`        | Exibe e gerencia as partidas cadastradas. |
+| `editar_partida.php`  | Permite editar dados de uma partida.      |
+| `excluir_partida.php` | Exclui partidas cadastradas.              |
+
+### Módulo de Times
+
+| Arquivo            | Descrição                             |
+| ------------------ | ------------------------------------- |
+| `times.php`        | Cadastro e listagem de times.         |
+| `editar_time.php`  | Atualização de informações dos times. |
+| `excluir_time.php` | Exclusão de times cadastrados.        |
+
+### Área Administrativa
+
+| Arquivo               | Descrição                                                 |
+| --------------------- | --------------------------------------------------------- |
+| `admin_inscritos.php` | Visualização dos participantes inscritos nos campeonatos. |
+| `gestao_usuarios.php` | Gerenciamento dos usuários do sistema.                    |
+
+### Área do Usuário
+
+| Arquivo                 | Descrição                                            |
+| ----------------------- | ---------------------------------------------------- |
+| `minhas_inscricoes.php` | Exibe os campeonatos em que o usuário está inscrito. |
+
+### Arquivos Compartilhados (Includes)
+
+| Arquivo       | Descrição                                            |
+| ------------- | ---------------------------------------------------- |
+| `conexao.php` | Realiza a conexão com o banco de dados MySQL.        |
+| `header.php`  | Cabeçalho padrão das páginas.                        |
+| `footer.php`  | Rodapé padrão do sistema.                            |
+| `navbar.php`  | Barra de navegação compartilhada.                    |
+| `funcoes.php` | Funções auxiliares utilizadas em diferentes módulos. |
+
+### Arquivos de Estilo (CSS)
+
+| Arquivo           | Descrição                                      |
+| ----------------- | ---------------------------------------------- |
+| `style.css`       | Estilos globais da aplicação.                  |
+| `home.css`        | Estilos específicos da página inicial.         |
+| `campeonatos.css` | Estilos relacionados ao módulo de campeonatos. |
+| `admin.css`       | Estilos exclusivos da área administrativa.     |
+
+### Arquivos JavaScript
+
+| Arquivo     | Descrição                                    |
+| ----------- | -------------------------------------------- |
+| `script.js` | Scripts gerais para interações da interface. |
+| `theme.js`  | Controle de temas e personalização visual.   |
+
+### Recursos Visuais
+
+| Diretório      | Descrição                                 |
+| -------------- | ----------------------------------------- |
+| `img/logo.png` | Logotipo da plataforma.                   |
+| `img/banners/` | Imagens utilizadas em banners do sistema. |
+| `img/icones/`  | Ícones utilizados na interface.           |
+
+### Banco de Dados
+
+| Arquivo                | Descrição                                                              |
+| ---------------------- | ---------------------------------------------------------------------- |
+| `proleague_backup.sql` | Script SQL contendo a estrutura e os dados iniciais do banco de dados. |
+
+### Documentação
+
+| Arquivo                                  | Descrição                                                     |
+| ---------------------------------------- | ------------------------------------------------------------- |
+| `Plataforma de campeonatos de jogos.txt` | Documento de apoio contendo informações sobre o projeto.      |
+| `README.md`                              | Documentação principal do sistema e instruções de utilização. |
+
+```
+```
+
+
 ---
 
 # 🗄️ Banco de Dados
